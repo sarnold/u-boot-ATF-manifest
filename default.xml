@@ -5,7 +5,7 @@
 
   <remote fetch="https://github.com/globalscaletechnologies" name="gti"/>
   <remote fetch="https://github.com/MarvellEmbeddedProcessors" name="marvell"/>
-  <remote fetch="https://gitlab.denx.de/u-boot/u-boot" name="uboot"/>
+  <remote fetch="https://github.com/u-boot" name="uboot"/>
   <remote fetch="https://review.trustedfirmware.org/TF-A" name="arm"/>
   <remote fetch="https://github.com/weidai11" name="crypto"/>
   <remote fetch="https://github.com/sarnold" name="sla"/>
