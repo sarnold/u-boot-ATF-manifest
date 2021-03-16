@@ -76,8 +76,25 @@ See the `espressobin wiki`_ for how to flash the above image.
 
 .. _espressobin wiki: http://wiki.espressobin.net/tiki-index.php?page=Update+the+Bootloader
 
-Works with mainline u-boot:
 
-* Marvell Armada SoCs
-* Rockchip ROCK-Pi-4
+Note about DDR_TOPOLOGY
+-----------------------
+
+For Armada37x0 only, the default DDR topology map index/name is 0.  You
+will need to check your board for the version stencil and RAM size/chip
+select.  For example, if your board stencil says ``ESPRESSOBin_V5_0_1``
+and you have 2 RAM chips (opposite each other, one on each side of the
+board) then you would use "2" for ``DDR3 2CS 1GB (EspressoBin V3-V5)``.
+
+Supported Options:
+
+* 0 - DDR3 1CS 512MB (DB-88F3720-DDR3-Modular, EspressoBin V3-V5)
+* 1 - DDR4 1CS 512MB (DB-88F3720-DDR4-Modular)
+* 2 - DDR3 2CS 1GB (EspressoBin V3-V5)
+* 3 - DDR4 2CS 4GB (DB-88F3720-DDR4-Modular)
+* 4 - DDR3 1CS 1GB (DB-88F3720-DDR3-Modular, EspressoBin V3-V5)
+* 5 - DDR4 1CS 1GB (EspressoBin V7, EspressoBin-Ultra)
+* 6 - DDR4 2CS 2GB (EspressoBin V7)
+* 7 - DDR3 2CS 2GB (EspressoBin V3-V5)
+* CUST - CUSTOMER BOARD (Customer board settings)
 
