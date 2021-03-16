@@ -68,8 +68,8 @@ Works with mainline u-boot
 References
 ----------
 
-**`ARM Trusted Firmware docs`_**
-**`U-Boot docs`_**
+* `ARM Trusted Firmware docs`_
+* `U-Boot docs`_
 
 
 
