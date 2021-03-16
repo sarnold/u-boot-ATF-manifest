@@ -51,15 +51,27 @@ Download the firmware source
 ::
 
   $ PATH=${PATH}:~/bin
-  $ mkdir marvell-armada-build
-  $ cd marvell-armada-build
+  $ mkdir <your_board_name>-build
+  $ cd <your_board_name>-build
   $ repo init -u https://github.com/sarnold/u-boot-ATF-manifest.git -b <board_branch>
   $ repo sync
 
 
 
-Works with mainline u-boot:
+Works with mainline u-boot
+--------------------------
 
 * Marvell Armada SoCs
 * Rockchip ROCK-Pi-4
 
+
+References
+----------
+
+**`ARM Trusted Firmware docs`_
+**`U-Boot docs`_**
+
+
+
+.. _ARM Trusted Firmware docs: https://trustedfirmware-a.readthedocs.io/en/latest/
+.. _U-Boot docs: https://u-boot.readthedocs.io/en/latest/
