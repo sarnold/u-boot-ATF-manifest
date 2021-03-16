@@ -6,7 +6,7 @@ The various branches available here will configure the repo build for the
 appropriate branches in each repository and clone them into the working
 directory.  As of now, there is no build script yet, and the required
 environment settings are generally unique to each board.  If this is not
-the master branch, see below for the manual build commands.
+the main branch, see below for the manual build commands.
 
 See the `arm64-multiplatform`_ repo for the mainline kernel branches tested,
 and the espessobin page on the `Gentoo wiki`_ for board info.
