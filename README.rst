@@ -98,3 +98,44 @@ Supported Options:
 * 7 - DDR3 2CS 2GB (EspressoBin V3-V5)
 * CUST - CUSTOMER BOARD (Customer board settings)
 
+
+Mainline u-boot (EspressoBin V5) output
+---------------------------------------
+
+::
+
+    TIM-1.0
+    mv_ddr-devel-g7c35173 DDR3 16b 1GB 2CS
+    WTMI-devel-18.12.1-c444aeb
+    WTMI: system early-init
+    SVC REV: 3, CPU VDD voltage: 1.143V
+    Setting clocks: CPU 1000 MHz, DDR 800 MHz
+    NOTICE:  Booting Trusted Firmware
+    NOTICE:  BL1: v2.4(release):v2.4-445-ga8fb76e59 (Marvell-devel-18.12.2)
+    NOTICE:  BL1: Built : 20:30:32, Mar 14 2021
+    NOTICE:  BL1: Booting BL2
+    NOTICE:  BL2: v2.4(release):v2.4-445-ga8fb76e59 (Marvell-devel-18.12.2)
+    NOTICE:  BL2: Built : 20:30:32, Mar 14 2021
+    NOTICE:  BL1: Booting BL31
+    NOTICE:  BL31: v2.4(release):v2.4-445-ga8fb76e59 (Marvell-devel-18.12.2)
+    NOTICE:  BL31: Built : 20:30:32, Mar 14 2021
+
+
+    U-Boot 2021.04-rc3-00166-gad7e1c7c6e (Mar 14 2021 - 19:58:47 -0700)
+
+    DRAM:  1 GiB
+    Comphy-0: USB3_HOST0    5 Gbps
+    Comphy-1: PEX0          2.5 Gbps
+    Comphy-2: SATA0         5 Gbps
+    SATA link 0 timeout.
+    AHCI 0001.0300 32 slots 1 ports 6 Gbps 0x1 impl SATA mode
+    flags: ncq led only pmp fbss pio slum part sxs
+    PCIE-0: Link down
+    MMC:   sdhci@d0000: 0, sdhci@d8000: 1
+    Loading Environment from SPIFlash... SF: Detected w25q32dw with page size 256 Bytes, erase size 4 KiB, total 4 MiB
+    OK
+    Model: Globalscale Marvell ESPRESSOBin Board
+    Card did not respond to voltage select! : -110
+    Net:   eth0: neta@30000
+    Hit any key to stop autoboot:  0
+    =>
