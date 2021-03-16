@@ -99,8 +99,7 @@ Supported Options:
 * CUST - CUSTOMER BOARD (Customer board settings)
 
 
-Mainline u-boot (EspressoBin V5) output
----------------------------------------
+Mainline u-boot (EspressoBin V5) output:
 
 ::
 
