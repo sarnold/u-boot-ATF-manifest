@@ -61,7 +61,8 @@ Download the firmware source
 Works with mainline u-boot
 --------------------------
 
-* Marvell Armada SoCs
+* Marvell Armada SoCs (espressobin variants tested)
+* Allwinner A64/H5/H6 SoCs (pine64 variants tested)
 * Rockchip ROCK-Pi-4
 
 
