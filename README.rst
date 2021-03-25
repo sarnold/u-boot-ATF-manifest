@@ -33,7 +33,7 @@ See the default.xml file for repo and branch details.
 Install the build requirements for Allwinner A64/H5/H6 arm64 SoCs,
 including pine64-plus.  On Ubuntu focal, it would be something like this:
 
-* aarch64 cross toolchain: ``apt-get install gcc-8-aarch64-linux-gnu flex bison build-essential``
+* aarch64 cross toolchain: ``apt-get install gcc-8-aarch64-linux-gnu flex bison swig build-essential``
 * arm cortex-M cross toolchain: ``apt-get install gcc-arm-none-eabi``
 * or1k cross-toolchain: ``wget https://musl.cc/or1k-linux-musl-cross.tgz``
 
@@ -83,11 +83,11 @@ Build a full bootloader binary to boot pine64/pine64-plus from sdcard.
 
 From the same directory after ``repo sync`` above::
 
-  $ make -C arm-trusted-firmware M0_CROSS_COMPILE=armv7m-hardened-eabi- CROSS_COMPILE=aarch64-unknown-linux-gnu- PLAT=sun50i_a64
+  $ make -C arm-trusted-firmware M0_CROSS_COMPILE=arm-none-eabi- CROSS_COMPILE=aarch64-linux-gnu- PLAT=sun50i_a64
   $ make -C crust CROSS_COMPILE=or1k-linux-musl- pine64_plus_defconfig
   $ make -C crust CROSS_COMPILE=or1k-linux-musl- scp
   $ make -C u-boot CROSS_COMPILE=aarch64-linux-gnu- pine64_plus_defconfig
-  $ make -C u-boot BL31=../arm-trusted-firmware/build/sun50i_a64/release/bl31.bin SCP=../crust/build/scp/scp.bin CROSS_COMPILE=aarch64-unknown-linux-gnu-
+  $ make -C u-boot BL31=../arm-trusted-firmware/build/sun50i_a64/release/bl31.bin SCP=../crust/build/scp/scp.bin CROSS_COMPILE=aarch64-linux-gnu-
 
 .. note:: Substitute your own CROSS_COMPILE triplets in the above commands.
           The exact names will vary depending on your build host and where
