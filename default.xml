@@ -5,7 +5,7 @@
 
   <remote fetch="https://github.com/u-boot" name="uboot"/>
   <remote fetch="https://github.com/ARM-software" name="arm"/>
-  <remote fetch="https://github.com/crust-firmware/crust" name="csp"/>
+  <remote fetch="https://github.com/crust-firmware" name="csp"/>
   <remote fetch="https://github.com/sarnold" name="sla"/>
   <remote fetch="https://github.com/VCTLabs" name="vct"/>
 
