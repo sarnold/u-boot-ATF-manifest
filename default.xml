@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <default sync-j="4" revision="allwinner-a64"/>
+
+  <remote fetch="https://github.com/u-boot" name="uboot"/>
+  <remote fetch="https://github.com/ARM-software" name="arm"/>
+  <remote fetch="https://github.com/crust-firmware/crust" name="csp"/>
+  <remote fetch="https://github.com/sarnold" name="sla"/>
+  <remote fetch="https://github.com/VCTLabs" name="vct"/>
+
+  <project remote="uboot" revision="master" name="u-boot" path="u-boot"/>
+  <project remote="csp" revision="master" name="crust" path="crust"/>
+  <project remote="arm" revision="master" name="arm-trusted-firmware" path="arm-trusted-firmware"/>
+
+</manifest>
+
