@@ -64,17 +64,39 @@ Download the firmware source
 
 From the same directory after ``repo sync`` above::
 
-  $ make -C u-boot CROSS_COMPILE=aarch64-linux-gnu- mvebu_espressobin-88f3720_defconfig u-boot.bin -j3
+  $ make -C u-boot DEVICE_TREE=armada-3720-espressobin CROSS_COMPILE=aarch64-linux-gnu- mvebu_espressobin-88f3720_defconfig u-boot.bin -j3
   $ make -C trusted-firmware-a CROSS_COMPILE=aarch64-linux-gnu- CROSS_CM3=arm-none-eabi- PLAT=a3700 CLOCKSPRESET=CPU_1000_DDR_800 DDR_TOPOLOGY=2 MV_DDR_PATH=$PWD/mv-ddr-marvell/ WTP=$PWD/a3700-utils-marvell/ CRYPTOPP_PATH=$PWD/cryptopp/ BL33=$PWD/u-boot/u-boot.bin mrvl_flash -j3
 
 The result of a successful build will be displayed when complete::
 
   Built /home/user/atf-build/trusted-firmware-a/build/a3700/release/flash-image.bin successfully
 
-See the `espressobin wiki`_ for how to flash the above image.
+To build a bootloader flash image for ``espressobin-ultra`` just replace
+the value for DDR_TOPOLOGY in the second command above, ie, use::
+
+  DDR_TOPOLOGY=5
+
+
+See the `espressobin wiki`_ for how to apply the usb flash image.
 
 
 .. _espressobin wiki: http://wiki.espressobin.net/tiki-index.php?page=Update+the+Bootloader
+
+
+Note about u-boot and UEFI boot
+-------------------------------
+
+The latest 2022 release of u-boot can boot the latest arm64 installers from
+major Linux distros, eg, the Debian arm64 mini.iso or the Gentoo arm64 minimal
+installer ISO, as long as the target board has current distroboot support.
+
+Most devices will need to boot from USB or TFTP; both options are supported
+by Debian, Gentoo, Arch, etc, however, "generic" installers assume a "normal"
+single/default ethernet device.
+
+For now, see ebbr-on-espressobin_ for more info.
+
+.. _ebbr-on-espressobin: https://marcin.juszkiewicz.com.pl/2021/02/15/ebbr-on-espressobin/
 
 
 Note about DDR_TOPOLOGY

@@ -8,14 +8,16 @@
   <remote fetch="https://github.com/u-boot" name="uboot"/>
   <remote fetch="https://review.trustedfirmware.org/TF-A" name="arm"/>
   <remote fetch="https://github.com/weidai11" name="crypto"/>
+  <remote fetch="https://gitlab.nic.cz/turris" name="mox"/>
   <remote fetch="https://github.com/sarnold" name="sla"/>
   <remote fetch="https://github.com/VCTLabs" name="vct"/>
 
   <project remote="marvell" revision="master" name="A3700-utils-marvell" path="a3700-utils-marvell"/>
   <project remote="marvell" revision="master" name="mv-ddr-marvell" path="mv-ddr-marvell"/>
-  <project remote="uboot" revision="master" name="u-boot" path="u-boot"/>
-  <project remote="arm" revision="master" name="trusted-firmware-a" path="trusted-firmware-a"/>
-  <project remote="crypto" revision="master" name="cryptopp" path="cryptopp"/>
+  <project remote="uboot" revision="v2022.10" name="u-boot" path="u-boot"/>
+  <project remote="arm" revision="lts-v2.8" name="trusted-firmware-a" path="trusted-firmware-a"/>
+  <project remote="mox" revision="v2022.06.11" name="mox-boot-builder" path="mox-boot-builder"/>
+  <project remote="crypto" revision="CRYPTOPP_8_7_0" name="cryptopp" path="cryptopp"/>
 
 </manifest>
 

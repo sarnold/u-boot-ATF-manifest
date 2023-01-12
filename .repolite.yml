@@ -1,0 +1,83 @@
+prog_name: repolite
+top_dir: ext  # local directory path for enabled repositories
+pull_with_rebase: false  # use --ff-only if false
+# add new repo_name sections as needed
+repos:
+  - repo_name: mv-ddr-marvell
+    repo_alias: mv-ddr
+    repo_url: https://github.com/MarvellEmbeddedProcessors/mv-ddr-marvell.git
+    repo_depth: 0
+    repo_remote: origin
+    repo_opts: []
+    repo_branch: master
+    repo_hash: null
+    repo_use_rebase: false
+    repo_has_lfs_files: false
+    repo_init_submodules: false
+    repo_install: false
+    repo_enable: true
+  - repo_name: A3700-utils-marvell
+    repo_alias: mv-utils
+    repo_url: https://github.com/MarvellEmbeddedProcessors/A3700-utils-marvell.git
+    repo_depth: 0
+    repo_remote: origin
+    repo_opts: []
+    repo_branch: master
+    repo_hash: null
+    repo_use_rebase: false
+    repo_has_lfs_files: false
+    repo_init_submodules: false
+    repo_install: false
+    repo_enable: true
+  - repo_name: cryptopp
+    repo_alias: null
+    repo_url: https://github.com/weidai11/cryptopp.git
+    repo_depth: 0
+    repo_remote: origin
+    repo_opts: []
+    repo_branch: CRYPTOPP_8_7_0
+    repo_hash: null
+    repo_use_rebase: false
+    repo_has_lfs_files: false
+    repo_init_submodules: false
+    repo_install: false
+    repo_enable: true
+  - repo_name: mox-boot-builder
+    repo_alias: mox-boot
+    repo_url: https://gitlab.nic.cz/turris/mox-boot-builder.git
+    repo_depth: 0
+    repo_remote: origin
+    repo_opts: []
+    repo_branch: v2022.06.11
+    repo_hash: null
+    repo_use_rebase: false
+    repo_has_lfs_files: false
+    repo_init_submodules: false
+    repo_install: false
+    repo_enable: true
+  - repo_name: u-boot
+    repo_alias: null
+    repo_url: https://github.com/u-boot/u-boot.git
+    repo_depth: 0
+    repo_remote: origin
+    repo_opts: []
+    repo_branch: v2022.10
+    repo_hash: null
+    repo_use_rebase: false
+    repo_has_lfs_files: false
+    repo_init_submodules: false
+    repo_install: false
+    repo_enable: true
+  - repo_name: trusted-firmware-a
+    repo_alias: tfa
+    repo_url: https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git
+    repo_depth: 0
+    repo_remote: origin
+    repo_opts: []
+    repo_branch: lts-v2.8
+    repo_hash: null
+    repo_use_rebase: false
+    repo_has_lfs_files: false
+    repo_init_submodules: false
+    repo_install: false
+    repo_enable: true
