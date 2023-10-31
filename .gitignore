@@ -7,3 +7,6 @@
 /.tox
 /build
 /dist
+/ext
+
+*.bin

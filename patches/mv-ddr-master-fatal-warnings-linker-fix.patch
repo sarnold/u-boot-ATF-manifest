@@ -1,0 +1,27 @@
+From f9f01ea9c0693e900b56d8976947145885a6b5b7 Mon Sep 17 00:00:00 2001
+From: Stephen L Arnold <nerdboy@gentoo.org>
+Date: Sun, 22 Jan 2023 15:48:17 -0800
+Subject: [PATCH] fix: dev: workaround for fatal-warnings linker failure using
+ gcc 12
+
+Signed-off-by: Stephen L Arnold <nerdboy@gentoo.org>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 3f0dd89..f000a67 100644
+--- a/Makefile
++++ b/Makefile
+@@ -470,7 +470,7 @@ all: check_env header create_dir $(MV_DDR_LIB)
+ # mv_ddr code compilation
+ $(OBJ_DIR)/%.o: %.c
+ 	$(ECHO) "  CC      $<"
+-	$(CC) -c $(CFLAGS) -o $@ $<
++	$(CC) -c $(CFLAGS) -Wno-error=array-bounds -o $@ $<
+ 
+ $(MV_DDR_LIB): $(MV_DDR_COBJ)
+ 	$(ECHO) "  AR      $(MV_DDR_LIBNAME)"
+-- 
+2.39.0
+

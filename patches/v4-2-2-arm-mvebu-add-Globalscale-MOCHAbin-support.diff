@@ -1,0 +1,416 @@
+diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+index a88aecc5bd9..dea567d2595 100644
+--- a/arch/arm/dts/Makefile
++++ b/arch/arm/dts/Makefile
+@@ -232,6 +232,7 @@ dtb-$(CONFIG_ARCH_MVEBU) +=			\
+ 	armada-38x-controlcenterdc.dtb		\
+ 	armada-7040-db-nand.dtb			\
+ 	armada-7040-db.dtb			\
++	armada-7040-mochabin.dtb			\
+ 	armada-8040-clearfog-gt-8k.dtb		\
+ 	armada-8040-db.dtb			\
+ 	armada-8040-mcbin.dtb			\
+diff --git a/arch/arm/dts/armada-7040-mochabin.dts b/arch/arm/dts/armada-7040-mochabin.dts
+new file mode 100644
+index 00000000000..84f06363728
+--- /dev/null
++++ b/arch/arm/dts/armada-7040-mochabin.dts
+@@ -0,0 +1,304 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Copyright (C) 2016- 2021 Marvell International Ltd.
++ * Copyright (C) 2021 Sartura Ltd.
++ */
++
++/*
++ * Device Tree file for Globalscale MOCHAbin
++ * Boot device: SPI NOR, 0x32 (SW3)
++ */
++
++#include "armada-7040.dtsi"
++
++/ {
++	model = "Globalscale MOCHAbin";
++	compatible = "globalscale,mochabin", "marvell,armada7040",
++		     "marvell,armada-ap806-quad", "marvell,armada-ap806";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	aliases {
++		i2c0 = &cp0_i2c0;
++		spi0 = &cp0_spi1;
++	};
++
++	memory@00000000 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++};
++
++&ap_pinctl {
++	   /* MPP Bus:
++	    * SDIO  [0-5]
++	    * UART0 [11,19]
++	    */
++		  /* 0 1 2 3 4 5 6 7 8 9 */
++	pin-func = < 1 1 1 1 1 1 0 0 0 0
++		     0 3 0 0 0 0 0 0 0 3 >;
++};
++
++/* microUSB UART console */
++&uart0 {
++	status = "okay";
++};
++
++/* eMMC */
++&ap_sdhci0 {
++	status = "okay";
++
++	bus-width = <4>;
++	no-1-8-v;
++	non-removable;
++};
++
++&cp0_pinctl {
++		/* MPP Bus:
++		 * E6341_RSTn        [0]
++		 * E6341_INT         [1]
++		 * I2C1              [2,3]
++		 * PCIE_CLKREQn      [5]
++		 * UART0             [6,7]
++		 * PCIE_WAKEn        [8]
++		 * PCIE_RSTOUTn      [9]  (GPIO)
++		 * DEVSLP_M2-2       [10]
++		 * PHY0_RSTn         [12] (88E1512 PHY RST)
++		 * SPI1              [13-16]
++		 * PHY0_INT          [24] (88E1512 PHY INT)
++		 * 9554_INT          [27] (PCA9554 INT)
++		 * IS_CLK_VBM        [29] (is31fl3199-clk-vbm)
++		 * IS_SDB            [30] (is31fl3199-sdb)
++		 * MKR_PWM           [31] (mikroBus PWM)
++		 * MKR_INT           [32] (mikroBus INT)
++		 * MKR_RST           [33] (mikroBus RST)
++		 * DEVSLP_M2-1       [34] (M.2 SATA DevSlp)
++		 * SMI               [35,36]
++		 * I2C0              [37,38]
++		 * RGMII2            [44-55]
++		 * SPI0              [56-59]
++		 * GPIO              [4,11,17-23,25-26,28]
++		 */
++		/*   0   1   2   3   4   5   6   7   8   9 */
++	pin-func = < 0   0   7   7   0   7   8   8   0   0
++		     0   0   0   3   3   3   3   0   0   0
++		     0   0   0   0   0   0   0   0   0   0
++		     0   0   0   0   0   8   8   2   2   0
++		     0   0   0   0   1   1   1   1   1   1
++		     1   1   1   1   1   1   6   6   6   6
++		     0   0   0 >;
++
++	cp0_i2c1_pins: cp0-i2c-pins-1 {
++		marvell,pins = < 2 3 >;
++		marvell,function = <7>;
++	};
++
++	cp0_spi0_pins: cp0-spi-pins-0 {
++		marvell,pins = < 56 57 58 59 >;
++		marvell,function = <6>;
++	};
++
++	cp0_spi1_pins: cp0-spi-pins-1 {
++		marvell,pins = < 13 14 15 16 >;
++		marvell,function = <3>;
++	};
++
++	cp0_smi_pins: cp0-smi-pins {
++		marvell,pins = < 35 36 >;
++		marvell,function = <8>;
++	};
++};
++
++/* mikroBUS SPI */
++&cp0_spi0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_spi0_pins>;
++};
++
++/* SPI-NOR */
++&cp0_spi1 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_spi1_pins>;
++
++	spi-flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <20000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "firmware";
++				reg = <0x0 0x3e0000>;
++			};
++
++			partition@3e0000 {
++				compatible = "marvell,hw-info";
++				label = "hw-info";
++				reg = <0x3e0000 0x10000>;
++			};
++
++			partition@3f0000 {
++				label = "u-boot-env";
++				reg = <0x3f0000 0x10000>;
++			};
++		};
++	};
++};
++
++/* mikroBUS, 1G SFP and GPIO expander */
++&cp0_i2c0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_i2c0_pins>;
++	clock-frequency = <100000>;
++
++	sfp_gpio: pca9554@39 {
++		compatible = "nxp,pca9554";
++		reg = <0x39>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		/*
++		 * IO0_0: SFP+_TX_FAULT
++		 * IO0_1: SFP+_TX_DISABLE
++		 * IO0_2: SFP+_PRSNT
++		 * IO0_3: SFP+_LOSS
++		 * IO0_4: SFP_TX_FAULT
++		 * IO0_5: SFP_TX_DISABLE
++		 * IO0_6: SFP_PRSNT
++		 * IO0_7: SFP_LOSS
++		 */
++	};
++};
++
++/* IS31FL3199, mini-PCIe and 10G SFP+ */
++&cp0_i2c1 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_i2c1_pins>;
++	clock-frequency = <100000>;
++};
++
++&cp0_comphy {
++	phy0 {
++		phy-type = <COMPHY_TYPE_SGMII1>;
++		phy-speed = <COMPHY_SPEED_3_125G>;
++	};
++
++	phy1 {
++		phy-type = <COMPHY_TYPE_USB3_HOST0>;
++	};
++
++	phy2 {
++		phy-type = <COMPHY_TYPE_SATA0>;
++	};
++
++	phy3 {
++		phy-type = <COMPHY_TYPE_SATA1>;
++	};
++
++	phy4 {
++		phy-type = <COMPHY_TYPE_SFI0>;
++		phy-speed = <COMPHY_SPEED_10_3125G>;
++	};
++
++	phy5 {
++		phy-type = <COMPHY_TYPE_PEX2>;
++	};
++};
++
++&cp0_sata0 {
++	status = "okay";
++};
++
++/* SMSC USB5434B hub */
++&cp0_usb3_0 {
++	status = "okay";
++};
++
++/* miniPCI-E USB */
++&cp0_usb3_1 {
++	status = "okay";
++};
++
++/* SMSC USB5434B hub */
++&cp0_utmi0 {
++	status = "okay";
++};
++
++/* miniPCI-E USB */
++&cp0_utmi1 {
++	status = "okay";
++};
++
++/* miniPCI-E (J5) */
++&cp0_pcie2 {
++	status = "okay";
++	marvell,reset-gpio = <&cp0_gpio0 9 GPIO_ACTIVE_LOW>;
++};
++
++&cp0_mdio {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_smi_pins>;
++
++	/* 88E1512 PHY */
++	eth2phy: ethernet-phy@1 {
++		reg = <1>;
++	};
++};
++
++&cp0_ethernet {
++	status = "okay";
++};
++
++/* 10G SFP+ */
++&cp0_eth0 {
++	status = "okay";
++
++	phy-mode = "sfi";
++	managed = "in-band-status";
++	marvell,sfp-tx-disable-gpio = <&sfp_gpio 1 GPIO_ACTIVE_HIGH>;
++};
++
++/* Topaz switch uplink */
++&cp0_eth1 {
++	status = "okay";
++
++	phy-mode = "2500base-x";
++	phy-reset-gpios = <&cp0_gpio0 0 GPIO_ACTIVE_LOW>;
++
++	fixed-link {
++		speed = <2500>;
++		full-duplex;
++	};
++};
++
++/* 1G SFP or 1G RJ45 */
++&cp0_eth2 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_ge2_rgmii_pins>;
++
++	phy-mode = "rgmii-id";
++	phy = <&eth2phy>;
++	marvell,sfp-tx-disable-gpio = <&sfp_gpio 5 GPIO_ACTIVE_HIGH>;
++	phy-reset-gpios = <&cp0_gpio0 12 GPIO_ACTIVE_LOW>;
++};
+diff --git a/configs/mvebu_mochabin-88f7040_defconfig b/configs/mvebu_mochabin-88f7040_defconfig
+new file mode 100644
+index 00000000000..cbd2f944c93
+--- /dev/null
++++ b/configs/mvebu_mochabin-88f7040_defconfig
+@@ -0,0 +1,88 @@
++CONFIG_ARM=y
++CONFIG_ARCH_CPU_INIT=y
++CONFIG_ARCH_MVEBU=y
++CONFIG_SYS_TEXT_BASE=0x00000000
++CONFIG_SYS_MALLOC_F_LEN=0x2000
++CONFIG_NR_DRAM_BANKS=2
++CONFIG_TARGET_MVEBU_ARMADA_8K=y
++CONFIG_MVEBU_MAC_HW_INFO=y
++CONFIG_ENV_SIZE=0x10000
++CONFIG_ENV_OFFSET=0x3f0000
++CONFIG_ENV_SECT_SIZE=0x10000
++CONFIG_DM_GPIO=y
++CONFIG_DEFAULT_DEVICE_TREE="armada-7040-mochabin"
++CONFIG_DEBUG_UART_BASE=0xf0512000
++CONFIG_DEBUG_UART_CLOCK=200000000
++CONFIG_DEBUG_UART=y
++CONFIG_AHCI=y
++CONFIG_DISTRO_DEFAULTS=y
++# CONFIG_SYS_MALLOC_CLEAR_ON_INIT is not set
++CONFIG_SYS_LOAD_ADDR=0x800000
++CONFIG_FIT=y
++CONFIG_FIT_VERBOSE=y
++CONFIG_AUTOBOOT_KEYED=y
++CONFIG_AUTOBOOT_PROMPT="Autoboot in %d seconds, to stop use 's' key\n"
++CONFIG_AUTOBOOT_STOP_STR="s"
++CONFIG_AUTOBOOT_KEYED_CTRLC=y
++CONFIG_USE_PREBOOT=y
++CONFIG_SYS_CONSOLE_INFO_QUIET=y
++# CONFIG_DISPLAY_CPUINFO is not set
++# CONFIG_DISPLAY_BOARDINFO is not set
++CONFIG_DISPLAY_BOARDINFO_LATE=y
++CONFIG_ARCH_EARLY_INIT_R=y
++CONFIG_BOARD_EARLY_INIT_F=y
++CONFIG_CMD_GPIO=y
++CONFIG_CMD_GPT=y
++# CONFIG_RANDOM_UUID is not set
++CONFIG_CMD_I2C=y
++CONFIG_CMD_MMC=y
++CONFIG_CMD_MTD=y
++CONFIG_CMD_PCI=y
++CONFIG_CMD_SATA=y
++CONFIG_CMD_SPI=y
++CONFIG_CMD_USB=y
++# CONFIG_CMD_SETEXPR is not set
++CONFIG_CMD_TFTPPUT=y
++CONFIG_CMD_CACHE=y
++CONFIG_CMD_TIME=y
++CONFIG_CMD_MVEBU_BUBT=y
++CONFIG_CMD_REGULATOR=y
++CONFIG_CMD_EXT4_WRITE=y
++# CONFIG_ISO_PARTITION is not set
++CONFIG_ENV_IS_IN_SPI_FLASH=y
++CONFIG_SYS_RELOC_GD_ENV_ADDR=y
++CONFIG_NET_RANDOM_ETHADDR=y
++CONFIG_AHCI_MVEBU=y
++CONFIG_GPIO_HOG=y
++CONFIG_DM_PCA953X=y
++CONFIG_DM_I2C=y
++CONFIG_SYS_I2C_MVTWSI=y
++CONFIG_MISC=y
++CONFIG_MMC_SDHCI=y
++CONFIG_MMC_SDHCI_XENON=y
++CONFIG_MTD=y
++CONFIG_DM_MTD=y
++CONFIG_SPI_FLASH_BAR=y
++CONFIG_SPI_FLASH_WINBOND=y
++CONFIG_SPI_FLASH_MTD=y
++CONFIG_PHY_MARVELL=y
++CONFIG_PHY_GIGE=y
++CONFIG_MVPP2=y
++CONFIG_RGMII=y
++CONFIG_PCI=y
++CONFIG_PCIE_DW_MVEBU=y
++CONFIG_PHY=y
++CONFIG_MVEBU_COMPHY_SUPPORT=y
++CONFIG_PINCTRL=y
++CONFIG_PINCTRL_ARMADA_8K=y
++CONFIG_DM_REGULATOR_FIXED=y
++CONFIG_DM_RTC=y
++CONFIG_RTC_ARMADA38X=y
++CONFIG_DEBUG_UART_SHIFT=2
++CONFIG_DEBUG_UART_ANNOUNCE=y
++CONFIG_SYS_NS16550=y
++CONFIG_KIRKWOOD_SPI=y
++CONFIG_USB=y
++CONFIG_USB_XHCI_HCD=y
++CONFIG_USB_EHCI_HCD=y
++# CONFIG_EFI_LOADER is not set
