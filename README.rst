@@ -111,7 +111,12 @@ all the dependencies and run the specified commands, eg:
   cryptopp  mox-boot  mv-ddr  mv-utils  tfa  u-boot
 
 The build commands should be run from the repolite_ "vendor" directory, by default
-named ``ext/``, while substituting for appropriate DDR and model type::
+named ``ext/``, while substituting for appropriate DDR and model type. The commands
+given below are for the original espressobin-v5 with iGB of DDR3 RAM chips and no
+emmc flash => ``DDR3 2CS 1GB`` as shown in the u-boot console output below.  Note
+that all of the espressobin variants should use ``PLAT=a3700`` for TFA.
+
+::
 
   $ cd ext/
   $ make -C u-boot CROSS_COMPILE=aarch64-unknown-linux-gnu- mvebu_espressobin-88f3720_defconfig u-boot.bin
