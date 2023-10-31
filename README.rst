@@ -37,6 +37,10 @@ including espressobin.  On Ubuntu focal, it would be something like this:
 * arm cortex-M cross toolchain: ``apt-get install gcc-arm-none-eabi``
 * crypto libs/headers: ``apt-get install libssl-dev``
 
+Repo tool method
+================
+
+Uses the repo manifest file: ``default.xml``.
 
 Install the repo utility
 ------------------------
@@ -76,12 +80,53 @@ the value for DDR_TOPOLOGY in the second command above, ie, use::
 
   DDR_TOPOLOGY=5
 
-
 See the `espressobin wiki`_ for how to apply the usb flash image.
-
 
 .. _espressobin wiki: http://wiki.espressobin.net/tiki-index.php?page=Update+the+Bootloader
 
+Repolite method
+===============
+
+Uses the YAML config: ``.repolite.yml`` and the ``tox.ini`` file. We also
+follow the latest configuration in the `TFA platform docs`_ for Armada 3720
+in the steps below.
+
+.. _TFA platform docs: https://trustedfirmware-a.readthedocs.io/en/lts-v2.8/plat/marvell/armada/build.html#build-instructions
+
+Tox
+---
+
+As long as you have git and at least Python 3.6, then you can install and
+use `tox`_.  After cloning the repository, you can run ``repolite --sync``
+via the ``tox`` command.  It will build a python virtual environment with
+all the dependencies and run the specified commands, eg:
+
+::
+
+  $ git clone https://github.com/sarnold/u-boot-ATF-manifest
+  $ cd u-boot-ATF-manifest/
+  $ git checkout marvell-armada
+  $ tox -e sync       # install deps, clone/checkout repositories
+  $ ls ext/
+  cryptopp  mox-boot  mv-ddr  mv-utils  tfa  u-boot
+
+The build commands should be run from the repolite_ "vendor" directory, by default
+named ``ext/``, while substituting for appropriate DDR and model type::
+
+  $ cd ext/
+  $ make -C u-boot CROSS_COMPILE=aarch64-unknown-linux-gnu- mvebu_espressobin-88f3720_defconfig u-boot.bin
+  $ make -C mox-boot CROSS_CM3=arm-none-eabi- wtmi_app.bin
+  $ make -C tfa CROSS_COMPILE=aarch64-unknown-linux-gnu- CROSS_CM3=arm-none-eabi- USE_COHERENT_MEM=0 PLAT=a3700 CLOCKSPRESET=CPU_1000_DDR_800 DDR_TOPOLOGY=2 MV_DDR_PATH=$PWD/mv-ddr WTP=$PWD/mv-utils CRYPTOPP_PATH=$PWD/cryptopp/ BL33=$PWD/u-boot/u-boot.bin WTMI_IMG=$PWD/mox-boot/wtmi_app.bin FIP_ALIGN=0x100 mrvl_flash -j8
+  $ cp tfa/build/a3700/release/flash-image.bin ../flash-image-1g-2cs.bin
+  $ cd -
+
+.. _tox: https://github.com/tox-dev/tox
+.. _repolite: https://sarnold.github.io/repolite/
+
+Miscellaneous
+=============
+
+Mainly platform-specific notes.
 
 Note about u-boot and UEFI boot
 -------------------------------
@@ -126,37 +171,41 @@ Mainline u-boot (EspressoBin V5) output:
 ::
 
     TIM-1.0
-    mv_ddr-devel-g7c35173 DDR3 16b 1GB 2CS
-    WTMI-devel-18.12.1-c444aeb
+    mv_ddr-devel-g2b37d92 DDR3 16b 1GB 2CS
+    WTMI-devel-18.12.1-a3e1c67
     WTMI: system early-init
-    SVC REV: 3, CPU VDD voltage: 1.143V
+    CPU VDD voltage default value: 1.155V
     Setting clocks: CPU 1000 MHz, DDR 800 MHz
+    CZ.NIC's Armada 3720 Secure Firmware v2022.06.11 (Oct 24 2023 20:33:51)
+    Running on ESPRESSObin
     NOTICE:  Booting Trusted Firmware
-    NOTICE:  BL1: v2.4(release):v2.4-445-ga8fb76e59 (Marvell-devel-18.12.2)
-    NOTICE:  BL1: Built : 20:30:32, Mar 14 2021
+    NOTICE:  BL1: lts-v2.8.9(release):lts-v2.8.9
+    NOTICE:  BL1: Built : 20:35:08, Oct 24 2023
     NOTICE:  BL1: Booting BL2
-    NOTICE:  BL2: v2.4(release):v2.4-445-ga8fb76e59 (Marvell-devel-18.12.2)
-    NOTICE:  BL2: Built : 20:30:32, Mar 14 2021
+    NOTICE:  BL2: lts-v2.8.9(release):lts-v2.8.9
+    NOTICE:  BL2: Built : 20:35:08, Oct 24 2023
     NOTICE:  BL1: Booting BL31
-    NOTICE:  BL31: v2.4(release):v2.4-445-ga8fb76e59 (Marvell-devel-18.12.2)
-    NOTICE:  BL31: Built : 20:30:32, Mar 14 2021
+    NOTICE:  BL31: lts-v2.8.9(release):lts-v2.8.9
+    NOTICE:  BL31: Built : 20:35:08, Oct 24 2023
 
 
-    U-Boot 2021.04-rc3-00166-gad7e1c7c6e (Mar 14 2021 - 19:58:47 -0700)
+    U-Boot 2022.10 (Oct 24 2023 - 20:32:43 -0700)
 
     DRAM:  1 GiB
+    Core:  47 devices, 24 uclasses, devicetree: separate
+    WDT:   Not starting watchdog@8300
+    Comphy chip #0:
     Comphy-0: USB3_HOST0    5 Gbps
-    Comphy-1: PEX0          2.5 Gbps
-    Comphy-2: SATA0         5 Gbps
+    Comphy-1: PEX0          5 Gbps
+    Comphy-2: SATA0         6 Gbps
     SATA link 0 timeout.
     AHCI 0001.0300 32 slots 1 ports 6 Gbps 0x1 impl SATA mode
     flags: ncq led only pmp fbss pio slum part sxs
-    PCIE-0: Link down
+    PCIe: Link down
     MMC:   sdhci@d0000: 0, sdhci@d8000: 1
     Loading Environment from SPIFlash... SF: Detected w25q32dw with page size 256 Bytes, erase size 4 KiB, total 4 MiB
     OK
     Model: Globalscale Marvell ESPRESSOBin Board
-    Card did not respond to voltage select! : -110
-    Net:   eth0: neta@30000
+    Net:   eth0: ethernet@30000
     Hit any key to stop autoboot:  0
     =>
