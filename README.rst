@@ -33,9 +33,19 @@ See the default.xml file for repo and branch details.
 Install the build requirements for Marvell armada 3xxx/7xxx/8xxx SoCs,
 including espressobin.  On Ubuntu focal, it would be something like this:
 
-* aarch64 cross toolchain: ``apt-get install gcc-8-aarch64-linux-gnu flex bison build-essential``
+* aarch64 cross toolchain: ``apt-get install gcc-8-aarch64-linux-gnu flex bison git build-essential``
 * arm cortex-M cross toolchain: ``apt-get install gcc-arm-none-eabi``
 * crypto libs/headers: ``apt-get install libssl-dev``
+
+For Debian bullseye/bookworm install the same packages as above but with
+a newer version of gcc.
+
+For Gentoo, install the tool deps and then build with crossdev::
+
+  # emerge --ask --update dev-vcs/git sys-apps/dtc dev-lang/swig sys-devel/crossdev dev-python/tox
+  # crossdev --target arm-none-eabi
+  # crossdev --target aarch64-unknown-linux-gnu
+
 
 Repo tool method
 ================
@@ -84,6 +94,7 @@ See the `espressobin wiki`_ for how to apply the usb flash image.
 
 .. _espressobin wiki: http://wiki.espressobin.net/tiki-index.php?page=Update+the+Bootloader
 
+
 Repolite method
 ===============
 
@@ -110,7 +121,46 @@ all the dependencies and run the specified commands, eg:
   $ ls ext/
   cryptopp  mox-boot  mv-ddr  mv-utils  tfa  u-boot
 
-The build commands should be run from the repolite_ "vendor" directory, by default
+To replicate the 2.8-lts build shown below, run the following tox commmands::
+
+  $ tox -e update
+  $ tox -e build
+
+The above build command has CPUS=4 as the default, and can be changed via
+an environment variable::
+
+  $ CPUS=8 tox -e build
+
+Eventually, the console display should look something like this:
+
+::
+
+    Success: NTIM Processing has completed successfully!
+
+  Finish time: 10/30/23 19:08:11
+
+  TBB Exiting...!
+  No input file for TIMN is supplied
+  Total number of images to process in file[0] - 3
+  0 Image at offset 00000000 is TIM_ATF.bin
+  1 Image at offset 00004000 is wtmi.bin
+  2 Image at offset 00015000 is boot-image.bin
+  Total number of images 3
+
+  Built /home/user/my_stuff/home/hardware/u-boot-ATF-manifest/ext/tfa/build/a3700/release/flash-image.bin successfully
+
+  make: Leaving directory '/home/user/my_stuff/home/hardware/u-boot-ATF-manifest/ext/tfa'
+  build: commands[3] /home/user/my_stuff/home/hardware/u-boot-ATF-manifest/ext> bash -c 'cp -v tfa/build/a3700/release/flash-image.bin ../'
+  'tfa/build/a3700/release/flash-image.bin' -> '../flash-image.bin'
+    update: OK (0.23=setup[0.03]+cmd[0.20] seconds)
+    build: OK (262.54=setup[0.01]+cmd[62.42,1.62,198.49,0.00] seconds)
+    congratulations :) (262.83 seconds)
+
+
+Manual build
+------------
+
+The manual commands should be run from the repolite_ "vendor" directory, by default
 named ``ext/``, while substituting for appropriate DDR and model type. The commands
 given below are for the original espressobin-v5 with iGB of DDR3 RAM chips and no
 emmc flash => ``DDR3 2CS 1GB`` as shown in the u-boot console output below.  Note

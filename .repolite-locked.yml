@@ -6,7 +6,7 @@ repos:
     repo_depth: 0
     repo_enable: true
     repo_has_lfs_files: false
-    repo_hash: 2b37d929928e2c86e90867f73a8abec946716ab1
+    repo_hash: bfcf62051be835f725005bb5137928f7c27b792e
     repo_init_submodules: false
     repo_install: false
     repo_name: mv-ddr-marvell
@@ -30,9 +30,9 @@ repos:
 -   repo_alias: mv-bins
     repo_branch: binaries-marvell-armada-18.12
     repo_depth: 0
-    repo_enable: true
+    repo_enable: false
     repo_has_lfs_files: false
-    repo_hash: c6c529ea3d905a28cc77331964c466c3e2dc852e
+    repo_hash: null
     repo_init_submodules: false
     repo_install: false
     repo_name: binaries-marvell
@@ -84,7 +84,7 @@ repos:
     repo_depth: 0
     repo_enable: true
     repo_has_lfs_files: false
-    repo_hash: 71a4468a113cb87ffd2c8bcca422ea9de70f7a07
+    repo_hash: b2dc24a412933340cd93f9dcbfc5c559db4048b3
     repo_init_submodules: false
     repo_install: false
     repo_name: trusted-firmware-a
