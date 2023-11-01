@@ -147,10 +147,10 @@ Eventually, the console display should look something like this:
   2 Image at offset 00015000 is boot-image.bin
   Total number of images 3
 
-  Built /home/user/my_stuff/home/hardware/u-boot-ATF-manifest/ext/tfa/build/a3700/release/flash-image.bin successfully
+  Built /home/user/u-boot-ATF-manifest/ext/tfa/build/a3700/release/flash-image.bin successfully
 
-  make: Leaving directory '/home/user/my_stuff/home/hardware/u-boot-ATF-manifest/ext/tfa'
-  build: commands[3] /home/user/my_stuff/home/hardware/u-boot-ATF-manifest/ext> bash -c 'cp -v tfa/build/a3700/release/flash-image.bin ../'
+  make: Leaving directory '/home/user/u-boot-ATF-manifest/ext/tfa'
+  build: commands[3] /home/user/u-boot-ATF-manifest/ext> bash -c 'cp -v tfa/build/a3700/release/flash-image.bin ../'
   'tfa/build/a3700/release/flash-image.bin' -> '../flash-image.bin'
     update: OK (0.23=setup[0.03]+cmd[0.20] seconds)
     build: OK (262.54=setup[0.01]+cmd[62.42,1.62,198.49,0.00] seconds)
