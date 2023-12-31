@@ -168,7 +168,7 @@ The manual commands should be run from the top-level repo directory, while
 substituting for appropriate platform and machine/model config. The commands
 given below are for the typical roc-rk3328-cc with 2GB of DDR4 RAM chips and no
 eMMC flash.  Note that all of the rk3328 variants should use ``PLAT=rk3328`` for
-TFA.
+TFA; repo paths below are as shown in the tox workflow above.
 
 ::
 

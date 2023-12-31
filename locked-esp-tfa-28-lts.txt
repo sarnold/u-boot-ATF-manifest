@@ -1,7 +1,0 @@
-INFO:root:Repository mv-ddr: branch is HEAD, commit is 2b37d92
-INFO:root:Repository mv-utils: branch is HEAD, commit is a3e1c67
-INFO:root:Repository mv-bins: branch is HEAD, commit is c6c529e
-INFO:root:Repository cryptopp: branch is HEAD, commit is CRYPTOPP_8_7_0
-INFO:root:Repository mox-boot: branch is HEAD, commit is v2022.06.11
-INFO:root:Repository u-boot: branch is HEAD, commit is v2022.10
-INFO:root:Repository tfa: branch is HEAD, commit is lts-v2.8.9
