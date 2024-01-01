@@ -150,14 +150,14 @@ Eventually, the console display should look something like this:
     uboot: OK (6.39=setup[1.74]+cmd[0.28,4.36,0.01] seconds)
     congratulations :) (6.44 seconds)
 
-.. note:: To build for a board without TFA platform support, eg, an rk3588
+.. note:: To build for a board without TFA platform support, eg, an rk3568
           board, open ``.repolite.yml`` in your favorite editor and change
           ``repo_enable`` to ``true`` for the ``rkbin`` repository, then
-          (re)run ``tox -e sync``. Lastly, export the following in your shell
-          prior to building u-boot::
+          (re)run ``tox -e sync``. Lastly, export something like the following
+          in your shell prior to building u-boot 2024 for nanopi-r5c::
 
-            export BL31=ext/rkbin/bin/rk35/rk3588_bl31_v1.33.elf
-            export ROCKCHIP_TPL=ext/rkbin/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.09.bin
+            export BL31=ext/rkbin/bin/rk35/rk3568_bl31_v1.43.elf
+            export ROCKCHIP_TPL=ext/rkbin/bin/rk35/rk3568_ddr_1560MHz_v1.18.bin
 
 
 
