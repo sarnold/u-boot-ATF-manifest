@@ -10,7 +10,7 @@ repos:
     repo_remote: origin
     repo_opts: []
     repo_branch: master
-    repo_hash: null
+    repo_hash: bfcf62051be835f725005bb5137928f7c27b792e
     repo_use_rebase: false
     repo_has_lfs_files: false
     repo_init_submodules: false
@@ -23,7 +23,7 @@ repos:
     repo_remote: origin
     repo_opts: []
     repo_branch: master
-    repo_hash: null
+    repo_hash: a3e1c67bb378e1d8a938e1b826cb602af83628d2
     repo_use_rebase: false
     repo_has_lfs_files: false
     repo_init_submodules: false
@@ -48,7 +48,7 @@ repos:
     repo_depth: 0
     repo_remote: origin
     repo_opts: []
-    repo_branch: CRYPTOPP_8_7_0
+    repo_branch: CRYPTOPP_8_9_0
     repo_hash: null
     repo_use_rebase: false
     repo_has_lfs_files: false
@@ -61,8 +61,8 @@ repos:
     repo_depth: 0
     repo_remote: origin
     repo_opts: []
-    repo_branch: v2022.06.11
-    repo_hash: null
+    repo_branch: master
+    repo_hash: aaffec49f833b26ba24171c941000a33066bd13d
     repo_use_rebase: false
     repo_has_lfs_files: false
     repo_init_submodules: false
@@ -74,7 +74,7 @@ repos:
     repo_depth: 0
     repo_remote: origin
     repo_opts: []
-    repo_branch: v2022.10
+    repo_branch: v2023.10
     repo_hash: null
     repo_use_rebase: false
     repo_has_lfs_files: false
@@ -88,7 +88,7 @@ repos:
     repo_remote: origin
     repo_opts: []
     repo_branch: lts-v2.8
-    repo_hash: null
+    repo_hash: lts-v2.8.13
     repo_use_rebase: false
     repo_has_lfs_files: false
     repo_init_submodules: false
