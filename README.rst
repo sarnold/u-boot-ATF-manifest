@@ -63,7 +63,7 @@ Works with mainline u-boot
 
 * Marvell Armada SoCs (espressobin variants tested)
 * Allwinner A64/H5/H6 SoCs (pine64 variants tested)
-* Rockchip ROCK-Pi-4
+* Rockchip ROCK-Pi-4, roc-rk3328-cc, nanopi-r5c
 
 
 References
