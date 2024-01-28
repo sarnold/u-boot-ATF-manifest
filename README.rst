@@ -27,9 +27,13 @@ a newer version of gcc.
 
 For Gentoo, install the tool deps and then build with crossdev::
 
-  # emerge --ask --update dev-vcs/git sys-apps/dtc dev-lang/swig sys-devel/crossdev dev-python/tox
-  # crossdev --target aarch64-unknown-linux-gnu
+  # emerge --ask --update dev-vcs/git dev-python/pyelftools sys-apps/dtc dev-lang/swig sys-devel/crossdev dev-python/tox
+  # crossdev --ov-output /usr/local/crossdev -t aarch64-unknown-linux-gnu
 
+For the M0 toolchain, try one of the following::
+
+  # crossdev --lenv 'USE="nano -nls -threads -unicode"' -s4 -t arm-none-eabi  --or--
+  # crossdev --lenv 'USE="nano -nls -threads -unicode"' --genv 'USE="cxx -nls -nptl -pch -pie -ssp" EXTRA_ECONF="--with-multilib-list=rmprofile --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-shared --disable-threads --disable-tls"' -s4 --ex-gdb -t arm-none-eabi
 
 .. note:: The `Tox Workflow`_ is recommended due to local configuration, thus
           making rkbin optional. If not using the Tox workflow, you must
