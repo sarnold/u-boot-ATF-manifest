@@ -1,0 +1,12 @@
+*.egg-info
+*.pyc
+*.pyo
+/.cache
+/.coverage
+/.env
+/.tox
+/build
+/dist
+/ext
+
+*.bin
