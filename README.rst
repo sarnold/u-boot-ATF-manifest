@@ -1,12 +1,10 @@
-=============================
- U-boot / ATF build manifest
-=============================
+======================================
+ Mainline U-boot / ATF build manifest
+======================================
 
-The various branches available here will configure the repo build for the
-appropriate branches in each repository and clone them into the working
-directory.  As of now, there is no build script yet, and the required
-environment settings are generally unique to each board.  If this is not
-the main branch, see below for the manual build commands.
+The various branches available here will configure at least one build setup
+for the appropriate branch in each repository and clone them into the working
+directory. If this is not the main branch, see below for build commands.
 
 See the `arm64-multiplatform`_ repo for some of the mainline kernel branches
 tested.
@@ -22,6 +20,11 @@ would be something like this:
 * aarch64 cross toolchain: ``apt-get install gcc-8-aarch64-linux-gnu flex bison build-essential``
 * arm cortex-M cross toolchain: ``apt-get install gcc-arm-none-eabi``
 * <additional board-specific dependencies>
+
+Since this is a u-boot branch for 64bit raspberrypi variants, the following
+graphic should illustrate where u-boot fits in the overall boot flow:
+
+|bootflow|
 
 If this branch has a manifest file (default.xml)
 ================================================
@@ -144,3 +147,8 @@ References
 .. _ARM Trusted Firmware docs: https://trustedfirmware-a.readthedocs.io/en/latest/
 .. _U-Boot docs: https://u-boot.readthedocs.io/en/latest/
 .. _Rpi U-boot: https://elinux.org/RPi_U-Boot
+
+.. |bootflow| image:: https://github.com/mhomran/u-boot-rpi3-b-plus/blob/master/imgs/boot-process.png?raw=true
+   :target: https://docs.u-boot.org/en/latest/board/broadcom/raspberrypi.html
+   :alt: Boot flow
+   :height: 360px
