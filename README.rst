@@ -73,11 +73,11 @@ the steps below.
 
 .. note:: The TFA support is not yet integrated with this build.
 
-.. _TFA platform: https://trustedfirmware-a.readthedocs.io/en/v2.10/plat/rockchip.html#
-.. _u-boot: https://docs.u-boot.org/en/v2023.10/board/rockchip/rockchip.html#building
+.. _TFA platform: https://trustedfirmware-a.readthedocs.io/en/latest/plat/rpi3.html
+.. _u-boot: https://docs.u-boot.org/en/latest/board/broadcom/raspberrypi.html
 
 As long as you have git and at least Python 3.6, then you can install and
-use `tox`_.  After cloning the repository, you can run ``repolite --sync``
+use tox_.  After cloning the repository, you can run ``repolite --sync``
 via the ``tox`` command.  It will build a python virtual environment with
 all the python dependencies and run the specified commands, eg:
 
@@ -144,6 +144,7 @@ References
 * `Rpi U-boot`_
 
 
+.. _tox: https://github.com/tox-dev/tox
 .. _ARM Trusted Firmware docs: https://trustedfirmware-a.readthedocs.io/en/latest/
 .. _U-Boot docs: https://u-boot.readthedocs.io/en/latest/
 .. _Rpi U-boot: https://elinux.org/RPi_U-Boot
