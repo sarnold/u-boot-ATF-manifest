@@ -9,7 +9,7 @@ environment settings are generally unique to each board.  If this is not
 the main branch, see below for the manual build commands.
 
 See the `arm64-multiplatform`_ repo for the mainline kernel branches tested,
-and the espessobin page on the `readthedocs pages`_ for board info.
+and the roc-rk3328-cc page on the `readthedocs pages`_ for board info.
 
 .. _readthedocs pages: https://roc-rk3328-cc.readthedocs.io/en/latest/index.html
 .. _arm64-multiplatform: https://github.com/sarnold/arm64-multiplatform
