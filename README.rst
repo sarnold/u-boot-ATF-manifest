@@ -103,23 +103,23 @@ Eventually, the console display should look something like this:
 
 ::
 
-      COPY    u-boot.bin
-      DTC     arch/arm/dts/bcm2835-rpi-a.dtb
-      DTC     arch/arm/dts/bcm2835-rpi-a-plus.dtb
-      DTC     arch/arm/dts/bcm2835-rpi-b.dtb
-      DTC     arch/arm/dts/bcm2835-rpi-b-plus.dtb
-      DTC     arch/arm/dts/bcm2835-rpi-b-rev2.dtb
-      DTC     arch/arm/dts/bcm2835-rpi-cm1-io1.dtb
-      DTC     arch/arm/dts/bcm2835-rpi-zero.dtb
-      DTC     arch/arm/dts/bcm2835-rpi-zero-w.dtb
-      DTC     arch/arm/dts/bcm2836-rpi-2-b.dtb
-      DTC     arch/arm/dts/bcm2837-rpi-3-a-plus.dtb
-      DTC     arch/arm/dts/bcm2837-rpi-3-b.dtb
-      DTC     arch/arm/dts/bcm2837-rpi-3-b-plus.dtb
-      DTC     arch/arm/dts/bcm2837-rpi-cm3-io3.dtb
-      DTC     arch/arm/dts/bcm2711-rpi-4-b.dtb
-      SHIPPED dts/dt.dtb
-      OFCHK   .config
+    COPY    u-boot.bin
+    DTC     arch/arm/dts/bcm2835-rpi-a.dtb
+    DTC     arch/arm/dts/bcm2835-rpi-a-plus.dtb
+    DTC     arch/arm/dts/bcm2835-rpi-b.dtb
+    DTC     arch/arm/dts/bcm2835-rpi-b-plus.dtb
+    DTC     arch/arm/dts/bcm2835-rpi-b-rev2.dtb
+    DTC     arch/arm/dts/bcm2835-rpi-cm1-io1.dtb
+    DTC     arch/arm/dts/bcm2835-rpi-zero.dtb
+    DTC     arch/arm/dts/bcm2835-rpi-zero-w.dtb
+    DTC     arch/arm/dts/bcm2836-rpi-2-b.dtb
+    DTC     arch/arm/dts/bcm2837-rpi-3-a-plus.dtb
+    DTC     arch/arm/dts/bcm2837-rpi-3-b.dtb
+    DTC     arch/arm/dts/bcm2837-rpi-3-b-plus.dtb
+    DTC     arch/arm/dts/bcm2837-rpi-cm3-io3.dtb
+    DTC     arch/arm/dts/bcm2711-rpi-4-b.dtb
+    SHIPPED dts/dt.dtb
+    OFCHK   .config
     make: Leaving directory '/home/nerdboy/my_stuff/home/hardware/u-boot-ATF-manifest/ext/u-boot'
     uboot: commands[2]> bash -c 'cp -v ext/u-boot/u-boot.bin .'
     'ext/u-boot/u-boot.bin' -> './u-boot.bin'
