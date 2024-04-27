@@ -158,11 +158,10 @@ Eventually, the console display should look something like this:
           board, open ``.repolite.yml`` in your favorite editor and change
           ``repo_enable`` to ``true`` for the ``rkbin`` repository, then
           (re)run ``tox -e sync``. Lastly, export something like the following
-          in your shell prior to building u-boot 2024 for nanopi-r5c::
+          in your shell prior to building u-boot 2024 for nanopi-r5c:
 
-            export BL31=ext/rkbin/bin/rk35/rk3568_bl31_v1.43.elf
-            export ROCKCHIP_TPL=ext/rkbin/bin/rk35/rk3568_ddr_1560MHz_v1.18.bin
-
+            ``export BL31=ext/rkbin/bin/rk35/rk3568_bl31_v1.43.elf``
+            ``export ROCKCHIP_TPL=ext/rkbin/bin/rk35/rk3568_ddr_1560MHz_v1.18.bin``
 
 
 Manual build steps
