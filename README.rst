@@ -160,8 +160,10 @@ Eventually, the console display should look something like this:
           (re)run ``tox -e sync``. Lastly, export something like the following
           in your shell prior to building u-boot 2024 for nanopi-r5c:
 
-            ``export BL31=ext/rkbin/bin/rk35/rk3568_bl31_v1.43.elf``
-            ``export ROCKCHIP_TPL=ext/rkbin/bin/rk35/rk3568_ddr_1560MHz_v1.18.bin``
+          ::
+
+              export BL31=ext/rkbin/bin/rk35/rk3568_bl31_v1.43.elf
+              export ROCKCHIP_TPL=ext/rkbin/bin/rk35/rk3568_ddr_1560MHz_v1.18.bin
 
 
 Manual build steps
@@ -243,9 +245,13 @@ As of at least the v2022.10 release, u-boot can boot the latest arm64 installers
 major Linux distros, eg, the Debian arm64 mini.iso or the Gentoo arm64 minimal
 installer ISO, as long as the target board has current distroboot support.
 
-Most devices will need to boot from USB or TFTP; both options are supported
-by Debian, Gentoo, Arch, etc, however, "generic" installers assume a "normal"
-single/default ethernet device.
+Most devices will need to boot (installers) from USB or TFTP; both
+options are supported by Debian, Gentoo, Arch, etc, however, "generic"
+installers assume a "normal" single/default ethernet device.
+
+At least some newer devices can use the the u-boot UEFI support to boot the grub
+efi binary (when installed with the removable option) which in turn can boot the
+current signed Gentoo dist kernels (see the `wiki documentation`_ for more info).
 
 That said, at least some Rockchip boards have a very minimal default environment
 in (mainline) u-boot to support the vendor-style flash storage layout with
@@ -258,6 +264,7 @@ can be installed with fully functional UEFI firmware support.  There is also
 at least one github project that adds EDK2 support for some of the pine64
 boards, eg, Quartz64. See the `quartz64_uefi project repo`_ for more details.
 
+.. _wiki documentation: https://wiki.gentoo.org/wiki/Embedded_Handbook/Bootloaders/Das_U-Boot#Booting_a_new_distro_kernel_with_U-Boot
 .. _quartz64_uefi project repo: https://github.com/jaredmcneill/quartz64_uefi
 
 Mainline u-boot (roc-rk3328-cc) output:
