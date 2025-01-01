@@ -8,6 +8,19 @@ directory.  As of now, there is no build script yet, and the required
 environment settings are generally unique to each board.  If this is not
 the main branch, see below for the manual build commands.
 
+Each branch (except main) contains a detailed example walkthrough for the
+given device/class used for testing:
+
+* marvell-armada_ - espressobin variants
+* allwinner-a64_ - pine64 variants
+* rockchip-libre_ - rk3328 rpi clone
+* rpi64_ - 64bit-capable raspberrypi variants
+
+.. _marvell-armada: https://github.com/sarnold/u-boot-ATF-manifest/tree/marvell-armada
+.. _allwinner-a6: https://github.com/sarnold/u-boot-ATF-manifest/tree/allwinner-a64
+.. _rockchip-libre: https://github.com/sarnold/u-boot-ATF-manifest/tree/rockchip-libre
+.. _rpi64: https://github.com/sarnold/u-boot-ATF-manifest/tree/rpi64
+
 See the `arm64-multiplatform`_ repo for the mainline kernel branches tested.
 
 .. _arm64-multiplatform: https://github.com/sarnold/arm64-multiplatform
